@@ -40,4 +40,14 @@ jobs:
         port: 22
         source: ./
         target: /var/www/html
+
+    - name: restarting nginx
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        script: |
+           sudo systemctl restart nginx
         
